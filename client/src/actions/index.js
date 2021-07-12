@@ -221,7 +221,7 @@ export const createUser = ({email, password, firstName, lastName }, setRegisterE
 
     //Updates the user profile
     try {
-        response[0] = await firebase.createUser({email, password}, {firstName, lastName});
+        response[0] = await firebase.createUser({email, password}, {firstName, lastName, avatarUrl: 'https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg'});
     } catch (err){
         console.log(err);
         setRegisterError(true);
