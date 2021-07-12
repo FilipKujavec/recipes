@@ -54,7 +54,7 @@ export const App = (props) => {
 
   return (
     <Router>
-      <Navbar className='z-10' RouteGuard={RouteGuard} /> 
+      <Navbar RouteGuard={RouteGuard} /> 
           <div className='flex justify-center absolute top-0 -z-10 w-screen pb-64'>
             <div className='w-5/6 bg-white shadow-2xl drop-shadow-2xl'>
               <div className='mt-24 px-2 md:px-16 pb-16 md:mt-48 overflow-hidden' >
