@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from "react-router-dom";
 import { compose } from 'redux';
+import demoAcccount from '../../config/demoAcccount';
 
 import Modal from '../shared/Modal';
 
@@ -20,7 +21,7 @@ const renderInput = ({label, input, meta, type}) => {
 };
 
 export const Login = (props) => {
-    const { authIsEmpty, onEscape, loginError, handleSubmit } = props;
+    const { authIsEmpty, onEscape, loginError, handleSubmit, onRegisterButton } = props;
     const firebase = useFirebase();
 
     // Closes the Modal if the User is logged in
@@ -33,6 +34,10 @@ export const Login = (props) => {
     //Signs the user in with email and password
     const onSubmit = (formValues) => {
         firebase.login(formValues);
+    };
+
+    const loginToDemoAccount = (formValues) => {
+        firebase.login(demoAcccount);
     };
 
     return (
@@ -51,12 +56,14 @@ export const Login = (props) => {
                             <br className='my-1'/>
                             <Field name='password' component={renderInput} label='Enter your Password:' type='password' />
                             <p className='text-red-500' > {loginError ? 'The password or the email is incorrect.':null} </p>
-                            <button className={`btn ${loginError ? 'mt-4':'mt-8'} mb-1 bg-primary`}>Login</button>
+                            <button className={`btn ${loginError ? 'mt-4':'mt-8'} bg-primary`}>Login</button>
                         </form>
 
-                        <div onClick={props.onRegisterButton} className='btn bg-primary mt-4 md:mt-2 text-center'>
+                        <button onClick={() => loginToDemoAccount()} className='btn bg-primary mt-3 md:mt-2 text-center' > Demo Account </button>
+
+                        <button onClick={() => onRegisterButton} className='btn bg-primary mt-3 md:mt-2 text-center' >
                             Register
-                        </div>
+                        </button>
 
                     </div>
                 </div>
