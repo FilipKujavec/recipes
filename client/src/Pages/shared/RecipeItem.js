@@ -2,8 +2,10 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 
 export default function RecipeItem(props) {
-    const { title, imageUrl, cookTime, id, inactive, author } = props;
+    const { title, cookTime, id, inactive, author } = props;
     const history = useHistory();
+
+    const imageUrl = props.imageUrl ? props.imageUrl:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg'
 
     return (
         <div onClick={() => inactive === true ? null:history.push(`/recipes/${id}`)} className='w-full md:p-2 lg:p-3'>
